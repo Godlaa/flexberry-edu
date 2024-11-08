@@ -1,18 +1,39 @@
 import Controller from '@ember/controller';
 
-export default class BooksEditController extends Controller {
-  async saveBook() {
-    const book = this.model;
-    await fetch(`http://localhost:3000/books/${book.id}`, {
+export default class EditBookController extends Controller {
+  saveBook(event) {
+    event.preventDefault();
+
+    let title = this.get('title');
+    let author = this.get('author');
+    let pagesCount = this.get('pagesCount');
+    let descriptionURL = this.get('descriptionURL');
+    let tags = this.get('tags');
+    let coverImage = this.get('coverImage');
+
+    let updatedBook = {
+      title,
+      author,
+      pagesCount,
+      descriptionURL,
+      tags,
+      coverImage
+    };
+
+    fetch(`http://localhost:3000/books/${this.model.id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        title: book.title,
-        author: book.author,
-      }),
-    });
-    this.transitionToRoute('books'); // Переход после сохранения
+      body: JSON.stringify(updatedBook)
+    })
+      .then(response => {
+        if (response.ok) {
+          alert('Книга успешно обновлена!');
+          this.transitionToRoute('books');
+        } else {
+          alert('Произошла ошибка при обновлении книги');
+        }
+      });
   }
 }

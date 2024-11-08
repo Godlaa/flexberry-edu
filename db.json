@@ -1,10 +1,44 @@
 {
-    "books": [
-      { "id": 1, "title": "Book Title 1", "author": "Author 1" },
-      { "id": 2, "title": "Book Title 2", "author": "Author 2" }
-    ],
-    "speakers": [
-      { "id": 1, "name": "Speaker 1", "topic": "Topic 1" },
-      { "id": 2, "name": "Speaker 2", "topic": "Topic 2" }
-    ]
+  "books": [
+    {
+      "id": "1",
+      "title": "Книга 1",
+      "author": "Автор 1",
+      "pagesCount": 250,
+      "descriptionURL": "https://example.com/description1",
+      "coverImage": "book-cover.jpg",
+      "tags": [
+        "тег1",
+        "тег2"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Книга 2",
+      "author": "Автор 2",
+      "pagesCount": 500,
+      "descriptionURL": "https://example.com/description2",
+      "coverImage": "book-cover.jpg",
+      "tags": [
+        "тег1",
+        "тег2"
+      ]
+    }
+  ],
+  "speakers": [
+    {
+      "id": "1",
+      "firstName": "Спикер 1",
+      "lastName": "Фамилия 1",
+      "patronymic": "Отчество 1",
+      "imageURL": "speaker-image.jpg"
+    },
+    {
+      "id": "2",
+      "firstName": "Спикер 2",
+      "lastName": "Фамилия 2",
+      "patronymic": "Отчество 2",
+      "imageURL": "speaker-image.jpg"
+    }
+  ]
 }

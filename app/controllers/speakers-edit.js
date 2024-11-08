@@ -13,6 +13,6 @@ export default class SpeakersEditController extends Controller {
         topic: speaker.topic,
       }),
     });
-    this.transitionToRoute('speakers'); // Переход после сохранения
+    this.transitionToRoute('speakers');
   }
 }
