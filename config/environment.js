@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'flexberry-edu',
     environment,
     rootURL: '/',
+    imagesPath: '/images/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

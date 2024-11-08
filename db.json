@@ -1,0 +1,10 @@
+{
+    "books": [
+      { "id": 1, "title": "Book Title 1", "author": "Author 1" },
+      { "id": 2, "title": "Book Title 2", "author": "Author 2" }
+    ],
+    "speakers": [
+      { "id": 1, "name": "Speaker 1", "topic": "Topic 1" },
+      { "id": 2, "name": "Speaker 2", "topic": "Topic 2" }
+    ]
+}
