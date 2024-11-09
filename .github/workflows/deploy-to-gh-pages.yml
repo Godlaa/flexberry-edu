@@ -20,6 +20,12 @@ jobs:
       - name: Clean install dependencies
         run: npm ci
 
+      - name: Install Json server 0.17.4
+        run: npm install json-server@0.17.4
+
+      - name: Run json server
+        run: npx json-server --watch db.json --port 3000
+
       - name: Build Application
         run: npx ember build --environment=ci
 
