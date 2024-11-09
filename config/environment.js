@@ -51,6 +51,7 @@ module.exports = function(environment) {
   if (environment === 'ci') {
     // here you can enable a production-specific feature
     ENV.rootURL = '/flexberry-edu/';
+    ENV.imagesPath = '/flexberry-edu/images/';
   }
 
   return ENV;
