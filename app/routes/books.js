@@ -6,14 +6,17 @@ export default Route.extend({
   queryParams: {
     search: {
       refreshModel: true
+    },
+    tags: {
+      refreshModel: true
     }
   },
   dataService: service('data-service'),
-  model({search}) {
+  model({search, tags}) {
     let promise = new Promise((resolve, reject) => {
       later(async () => {
         try {
-          let books = search ? await this.get('dataService').getBooks(search) : await this.get('dataService').getBooks();
+          let books = search || tags ? await this.get('dataService').getBooks(search, tags) : await this.get('dataService').getBooks();
           resolve(books);
         }
         catch(e) {
@@ -40,8 +43,8 @@ export default Route.extend({
     refreshBooks() {
       this.refresh();
     },
-    loading(transition, originRoute) {
+    loading() {
       return false;
-    }
+    },
   }
 });

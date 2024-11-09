@@ -13,13 +13,18 @@
             </div>
             <div class="col-md-auto">
                 <form class="form-inline">
-                    <input class="form-control mr-2 search-long search-only" type="search" placeholder="ФИО"
-                        aria-label="Спикер">
+                    {{input class="form-control mr-2 search-long search-only" type="search" placeholder="ФИО"
+                        aria-label="Спикер" value=search}}
                     <button class="btn btn-primary my-2" type="submit">Найти</button>
                 </form>
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-3">
+            {{#if model.isLoading}}
+            <div class="welcome-page">
+                <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="Загрузка">
+            </div>
+            {{else}}
             {{#each model as |speaker|}}
             <div class="col mb-4">
                 <div class="card">
@@ -55,6 +60,7 @@
                 </div>
             </div>
             {{/each}}
+            {{/if}}
         </div>
     </div>
 </div>

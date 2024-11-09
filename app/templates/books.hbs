@@ -21,8 +21,8 @@
             </div>
             <div class="col-md-auto">
                 <form class="form-inline">
-                    <input class="form-control mr-2" type="search" placeholder="Поиск по тегам"
-                        aria-label="Найти по тегам">
+                    {{input class="form-control mr-2" type="tags" placeholder="Поиск по тегам" value=tags
+                        aria-label="Найти по тегам" }}
                     <button class="btn btn-primary my-2" type="submit">Поиск</button>
                 </form>
             </div>
@@ -47,7 +47,7 @@
                             <div><strong>Количество страниц</strong>: {{book.pagesCount}}</div>
                             <div><strong>Теги</strong>:
                                 {{#each book.tags as |tag|}}
-                                <a href="#" class="tag-link"><span class="small">{{tag}}</span></a>
+                                <a onclick={{action filterByTag tag}} class="tag-link"><span class="small">{{tag}}</span></a>
                                 {{/each}}
                             </div>
                         </li>

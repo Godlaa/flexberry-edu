@@ -2,42 +2,43 @@
   "books": [
     {
       "id": "1",
-      "title": "Книга 1",
-      "author": "Автор 1",
-      "pagesCount": 250,
-      "descriptionURL": "https://example.com/description1",
+      "title": "Война и мир",
+      "author": "Лев Толстой",
+      "pagesCount": 1200,
+      "descriptionURL": "https://example.com/war-and-peace-description",
       "coverImage": "book-cover.jpg",
       "tags": [
-        "тег1",
-        "тег2"
+        "классика",
+        "роман",
+        "исторический"
       ]
     },
     {
       "id": "2",
-      "title": "Книга 2",
-      "author": "Автор 2",
+      "title": "Преступление и наказание",
+      "author": "Федор Достоевский",
       "pagesCount": 500,
-      "descriptionURL": "https://example.com/description2",
+      "descriptionURL": "https://example.com/crime-and-punishment-description",
       "coverImage": "book-cover.jpg",
       "tags": [
-        "тег1",
-        "тег2"
+        "классика",
+        "психологический роман"
       ]
     }
   ],
   "speakers": [
     {
       "id": "1",
-      "firstName": "Спикер 1",
-      "lastName": "Фамилия 1",
-      "patronymic": "Отчество 1",
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "patronymic": "Иванович",
       "imageURL": "speaker-image.jpg"
     },
     {
       "id": "2",
-      "firstName": "Спикер 2",
-      "lastName": "Фамилия 2",
-      "patronymic": "Отчество 2",
+      "firstName": "Мария",
+      "lastName": "Петрова",
+      "patronymic": "Александровна",
       "imageURL": "speaker-image.jpg"
     }
   ]
