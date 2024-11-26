@@ -2,6 +2,7 @@
   "books": [
     {
       "id": "1",
+      "type": "book",
       "title": "Война и мир",
       "author": "Лев Толстой",
       "pagesCount": 1200,
@@ -15,6 +16,7 @@
     },
     {
       "id": "2",
+      "type": "book",
       "title": "Преступление и наказание",
       "author": "Федор Достоевский",
       "pagesCount": 500,
@@ -29,6 +31,7 @@
   "speakers": [
     {
       "id": "1",
+      "type": "speaker",
       "firstName": "Иван",
       "lastName": "Иванов",
       "patronymic": "Иванович",
@@ -36,6 +39,7 @@
     },
     {
       "id": "2",
+      "type": "speaker",
       "firstName": "Мария",
       "lastName": "Петрова",
       "patronymic": "Александровна",

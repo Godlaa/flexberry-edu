@@ -13,7 +13,7 @@ export default Route.extend({
     let promise = new Promise((resolve, reject) => {
       later(async () => {
         try {
-          let books = search ? await this.get('dataService').getSpeakers(search) : await this.get('dataService').getSpeakers();
+          let books = search ? await this.get('dataService').getSpeakers(search) : await this.get('store').findAll('speaker');
           resolve(books);
         }
         catch(e) {
