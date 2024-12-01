@@ -3,8 +3,14 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   actions: {
     async saveBook(book) {
-      let newBook = this.get('store').createRecord('book', book);
-      await newBook.save();
+      let bookModel = this.get('model');
+      bookModel.set('title', book.title);
+      bookModel.set('author', book.author);
+      bookModel.set('pagesCount', book.pagesCount);
+      bookModel.set('descriptionURL', book.descriptionURL);
+      bookModel.set('coverImage', book.coverImage);
+      bookModel.set('tags', book.tags);
+      await bookModel.save();
       this.transitionToRoute('books');
     },
     cancel() {
