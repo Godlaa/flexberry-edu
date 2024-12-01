@@ -16,7 +16,7 @@ export default Route.extend({
     let promise = new Promise((resolve, reject) => {
       later(async () => {
         try {
-          let books = search || tags ? await this.get('store').queryRecord('book', search, tags) : await this.get('store').findAll('book');
+          let books = search || tags ? await this.get('dataService').getBooks(search, tags) : await this.get('store').findAll('book');
           resolve(books);
         }
         catch(e) {
@@ -36,12 +36,12 @@ export default Route.extend({
 
   setupController(controller, model) {
     this._super(controller, model);
-    //controller.set('isLoading', false);
+    controller.set('isLoading', false);
   },
 
   actions: {
     refreshBooks() {
-      this.refresh();
+      // this.refresh();
     },
     loading() {
       return false;

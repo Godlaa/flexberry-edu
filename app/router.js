@@ -10,7 +10,9 @@ Router.map(function() {
   this.route('index', { path: '/' });
   this.route('books', { path: '/books' });
   this.route('speakers', { path: '/speakers' });
+  this.route('books-new', { path: '/books/edit/new' });
   this.route('books-edit', { path: '/books/edit/:book_id' });
+  this.route('speakers-new', { path: '/speakers/edit/new' });
   this.route('speakers-edit', { path: '/speakers/edit/:speaker_id' });
   this.route('404', { path: '/*path' });
 });

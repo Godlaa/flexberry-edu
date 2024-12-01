@@ -10,12 +10,14 @@ export default DS.JSONSerializer.extend({
     hashCopy.attributes.descriptionURL = hash.descriptionURL;
     hashCopy.attributes.coverImage = hash.coverImage;
     hashCopy.attributes.tags = hash.tags;
+    hashCopy.attributes.rating = hash.rating;
     delete hashCopy.title;
     delete hashCopy.author;
     delete hashCopy.pagesCount;
     delete hashCopy.descriptionURL;
     delete hashCopy.coverImage;
     delete hashCopy.tags;
+    delete hashCopy.rating;
     hash = {
       data: hashCopy
     };
@@ -23,6 +25,7 @@ export default DS.JSONSerializer.extend({
   },
   serialize(snapshot, options) {
     let json = this._super(snapshot, options);
+    json.type = snapshot.modelName;
     return json;
   }
 });

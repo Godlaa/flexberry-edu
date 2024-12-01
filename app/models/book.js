@@ -6,5 +6,6 @@ export default DS.Model.extend({
   pagesCount: DS.attr('number'),
   descriptionURL: DS.attr('string'),
   coverImage: DS.attr('string'),
-  tags: DS.attr()
+  tags: DS.attr(),
+  rating: DS.attr('number'),
 });

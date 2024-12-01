@@ -38,7 +38,7 @@ export default Route.extend({
 
   actions: {
     refreshSpeakers() {
-      this.refresh();
+      // this.refresh();
     },
     loading() {
       return false;
