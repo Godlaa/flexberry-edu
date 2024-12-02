@@ -8,5 +8,16 @@ export default DS.JSONAPIAdapter.extend({
     this.set('headers', {
       'Content-Type': 'application/json'
     });
+  },
+
+  buildURL(modelName, id, snapshot, requestType, query) {
+    let url = this._super(modelName, id, snapshot, requestType, query);
+    if (modelName === 'meeting' && requestType === 'findAll') {
+      url += '?_expand=book&_expand=speaker';
+    }
+    if (modelName === 'meeting' && requestType === 'findRecord' && id) {
+      url += '?_expand=book&_expand=speaker';
+    }
+    return url;
   }
 });

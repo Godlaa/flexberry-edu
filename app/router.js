@@ -14,7 +14,11 @@ Router.map(function() {
   this.route('books-edit', { path: '/books/edit/:book_id' });
   this.route('speakers-new', { path: '/speakers/edit/new' });
   this.route('speakers-edit', { path: '/speakers/edit/:speaker_id' });
+
   this.route('404', { path: '/*path' });
+  this.route('meetings', { path: '/meetings' });
+  this.route('meetings-edit', { path: '/meetings/edit/:meeting_id' });
+  this.route('meetings-new', { path: '/meetings/edit/new' });
 });
 
 export default Router;

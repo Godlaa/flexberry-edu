@@ -2,7 +2,6 @@
   "books": [
     {
       "id": "1",
-      "type": "book",
       "title": "Война и мир",
       "author": "Лев Толстой",
       "pagesCount": 1200,
@@ -13,11 +12,10 @@
         "роман",
         "исторический"
       ],
-      "rating": null
+      "rating": 89
     },
     {
       "id": "2",
-      "type": "book",
       "title": "Преступление и наказание",
       "author": "Федор Достоевский",
       "pagesCount": 500,
@@ -26,13 +24,13 @@
       "tags": [
         "классика",
         "психологический роман"
-      ]
+      ],
+      "rating": 80
     }
   ],
   "speakers": [
     {
       "id": "1",
-      "type": "speaker",
       "firstName": "Иван",
       "lastName": "Иванов",
       "patronymic": "Иванович",
@@ -40,11 +38,30 @@
     },
     {
       "id": "2",
-      "type": "speaker",
       "firstName": "Мария",
       "lastName": "Петрова",
       "patronymic": "Александровна",
       "imageURL": "speaker-image.jpg"
+    }
+  ],
+  "meetings": [
+    {
+      "id": "1",
+      "bookId": "1",
+      "speakerId": "1",
+      "date": "2023-08-01",
+      "feedback": "Отличная встреча!",
+      "videoURL": "meeting-video.mp4",
+      "presentationURL": "meeting-presentation.pdf"
+    },
+    {
+      "id": "2",
+      "bookId": "2",
+      "speakerId": "2",
+      "date": "2023-08-02",
+      "feedback": "Хорошая встреча!",
+      "videoURL": "meeting-video.mp4",
+      "presentationURL": "meeting-presentation.pdf"
     }
   ]
 }
