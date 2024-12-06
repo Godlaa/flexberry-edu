@@ -5,5 +5,5 @@ export default DS.Model.extend({
   lastName: DS.attr('string'),
   patronymic: DS.attr('string'),
   imageURL: DS.attr('string'),
-  meetings: DS.hasMany('meeting'),
+  report: DS.hasMany('report'),
 });

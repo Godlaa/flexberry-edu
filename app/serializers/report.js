@@ -3,7 +3,11 @@ import DS from 'ember-data';
 
 export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
-    reports: {
+    books: {
+      serialize: 'records',
+      deserialize: 'records'
+    },
+    speakers: {
       serialize: 'records',
       deserialize: 'records'
     }
@@ -12,5 +16,5 @@ export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
   normalize(model, hash) {
     hash = this._super(model, hash);
     return hash;
-  }
+  },
 });

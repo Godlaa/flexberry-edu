@@ -15,11 +15,11 @@ export default Route.extend({
     },
   },
   dataService: service('data-service'),
-  model({speaker, book, date}) {
+  model({speaker, book, meetingDate}) {
     let promise = new Promise((resolve, reject) => {
       later(async () => {
         try {
-          let meetings = speaker || book || date ? await this.get('dataService').getMeetings(speaker, book, date) : await this.get('store').findAll('meeting');
+          let meetings = await this.get('store').findAll('meeting');
           resolve(meetings);
         }
         catch(e) {
@@ -43,7 +43,7 @@ export default Route.extend({
   },
 
   actions: {
-    refreshSpeakers() {
+    refreshMeetings() {
       // this.refresh();
     },
     loading() {

@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  queryParams: ['speaker', 'book', 'date'],
+  queryParams: ['speaker', 'book', 'meetingDate'],
   speaker: '',
   book: '',
   date: '',
   actions: {
-    deleteMeeting(meeting) {
-      meeting.destroyRecord();
+    async deleteMeeting(meeting) {
+      await meeting.destroyRecord();
     }
   }
 });

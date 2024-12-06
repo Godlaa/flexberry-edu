@@ -12,12 +12,18 @@ export default DS.JSONAPIAdapter.extend({
 
   buildURL(modelName, id, snapshot, requestType, query) {
     let url = this._super(modelName, id, snapshot, requestType, query);
-    if (modelName === 'meeting' && requestType === 'findAll') {
+    if (modelName === 'report' && requestType === 'findAll') {
       url += '?_expand=book&_expand=speaker';
+    }
+    if (modelName === 'report' && requestType === 'findRecord' && id) {
+      url += '?_expand=book&_expand=speaker';
+    }
+    if (modelName === 'meeting' && requestType === 'findAll') {
+      url += '?_embed=reports';
     }
     if (modelName === 'meeting' && requestType === 'findRecord' && id) {
-      url += '?_expand=book&_expand=speaker';
+      url += '?_embed=reports';
     }
     return url;
-  }
+  },
 });
