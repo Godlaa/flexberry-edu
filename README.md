@@ -1,4 +1,4 @@
-Для запуска DB команда
+# Для запуска DB команда
 node JsonServer.js db.json
 
 # flexberry-edu
