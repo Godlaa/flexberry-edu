@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
 import moment from 'moment';
 import { computed } from '@ember/object';
 
