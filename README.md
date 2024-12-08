@@ -1,3 +1,6 @@
+Для запуска DB команда
+node JsonServer.js db.json
+
 # flexberry-edu
 
 This README outlines the details of collaborating on this Ember application.
