@@ -8,32 +8,47 @@
     {{else}}
     <div class="form-row navbar-panel justify-content-between align-items-end">
       <div class="col-md-1">
-        {{#link-to 'meetings-new' type="button" class="btn btn-outline-primary my-2" title="Добавить встречу"}}
+        <button type="button" class="btn btn-outline-primary my-2" title="Добавить встречу" {{action "addMeeting"}}>
           <svg viewBox="0 0 16 16" class="bi bi-plus card-button" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
               d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
           </svg>
-        {{/link-to}}
+        </button>
       </div>
       <div class="col-md-3 align-top">
         <h5>Спикер</h5>
         <select class="selectpicker form-control dropdown-filter-control" data-live-search="true" data-size="5"
-          title="Спикер...">
-          {{#each model as |meeting|}}
-              <option>{{meeting.date}}</option>
+          title="Спикер..."
+          onchange={{action "updateSpeaker" value="target.value"}}
+          value={{speakerSelected}}
+          >
+          <option selected={{if (eq speakerSelected '') "selected"}}></option>
+          {{#each model.speakers as |speaker|}}
+              <option
+               value="{{speaker.id}}"
+               selected={{if (eq speaker.id speakerSelected) "selected"}}>
+               {{speaker.lastName}} {{speaker.firstName}}
+               </option>
           {{/each}}
         </select>
       </div>
       <div class="col-md-3">
         <h5>Книга</h5>
         <select class="selectpicker form-control dropdown-filter-control" data-live-search="true" data-size="5"
-          title="Книга...">
-          {{#each model as |meeting|}}
-             {{#each meeting.reports as |report|}}
-              <option>{{report.book.title}}</option>
-             {{/each}}
-          {{/each}}
+          title="Книга..."
+          onchange={{action "updateBook" value="target.value"}}
+          value={{bookSelected}}
+        >
+        <option selected={{if (eq bookSelected '') "selected"}}></option>
+        {{#each model.books as |book|}}
+          <option
+            value="{{book.id}}"
+            selected={{if (eq book.id bookSelected) "selected"}}
+          >
+            {{book.title}}
+          </option>
+        {{/each}}
         </select>
       </div>
       <div class="col-md-3">
@@ -55,14 +70,14 @@
         </div>
       </div>
       <div class="col-md-auto text-right col-filter">
-        <button type="button" class="btn btn-outline-primary">
+        <button type="button" class="btn btn-outline-primary" {{action "filter"}}>
           <svg viewBox="0 0 16 16" class="bi bi-funnel card-button" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
               d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
           </svg>
         </button>
-        <button type="button" class="btn btn-outline-secondary">
+        <button type="button" class="btn btn-outline-secondary" {{action "clearFilter"}}>
           <svg viewBox="0 0 16 16" class="bi bi-x card-button" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
               d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
@@ -70,7 +85,7 @@
         </button>
       </div>
     </div>
-    {{#each model as |meeting|}}
+    {{#each model.meetings as |meeting|}}
     <div class="border border-dark rounded p-4 mb-4">
       <h4>Дата встречи</h4>
       <div class="row h-100 justify-content-between mb-4">
@@ -109,8 +124,8 @@
           </button>
         </div>
       </div>
-      {{#each meeting.reports as |report|}}
       <h4>Список докладов</h4>
+      {{#each meeting.reports as |report|}}
       <ul class="list-group">
         <li class="list-group-item">
           <div class="row h-100 justify-content-between">
@@ -170,19 +185,20 @@
     {{/each}}
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item {{if (eq currentPage 1) 'disabled'}}">
+          {{#link-to "meetings" (query-params page=(if (gt currentPage 1) (sub currentPage 1) 1)) class="page-link" aria-label="Previous"}}
             <span aria-hidden="true">&laquo;</span>
-          </a>
+          {{/link-to}}
         </li>
-        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1 <span
-              class="sr-only">(текущая)</span></a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+        {{#each pages as |page|}}
+          <li class="page-item">
+            {{link-to page "meetings" (query-params page=page) class="page-link"}}
+          </li>
+        {{/each}}
+        <li class="page-item {{if (eq currentPage totalPages) 'disabled'}}">
+          {{#link-to "meetings" (query-params page=(if (lt currentPage totalPages) (add currentPage 1) totalPages)) class="page-link" aria-label="Next"}}
             <span aria-hidden="true">&raquo;</span>
-          </a>
+          {{/link-to}}
         </li>
       </ul>
     </nav>

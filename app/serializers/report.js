@@ -4,11 +4,15 @@ import DS from 'ember-data';
 export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     books: {
-      serialize: 'records',
+      serialize: 'ids',
       deserialize: 'records'
     },
     speakers: {
-      serialize: 'records',
+      serialize: 'ids',
+      deserialize: 'records'
+    },
+    meetings: {
+      serialize: true,
       deserialize: 'records'
     }
   },

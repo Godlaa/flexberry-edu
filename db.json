@@ -46,36 +46,46 @@
   ],
   "reports": [
     {
-      "id": 1,
-      "meetingId": 1,
-      "bookId": 1,
-      "speakerId": 1,
-      "feedback": "Отличная встреча!",
-      "videoURL": "meeting-video.mp4",
-      "presentationURL": "meeting-presentation.pdf",
-      "bookRate": 50
-    },
-    {
       "id": 2,
       "meetingId": 2,
       "bookId": 2,
-      "speakerId": 2,
-      "feedback": "Хорошая встреча!",
-      "videoURL": "meeting-video.mp4",
+      "speakerId": 1,
+      "feedback": "Хорошая встреча! Хорошая встреча! Хорошая встреча!",
+      "videoURL": "meeting-video.mp3",
       "presentationURL": "meeting-presentation.pdf",
-      "bookRate": 90
+      "bookRate": 95
+    },
+    {
+      "feedback": "123 Хорошая встреча! Хорошая встреча!",
+      "videoURL": "123",
+      "presentationURL": "123",
+      "bookRate": 123,
+      "speakerId": 1,
+      "bookId": 2,
+      "meetingId": 2,
+      "id": 3
+    },
+    {
+      "feedback": "123123123",
+      "videoURL": "123",
+      "presentationURL": "123",
+      "bookRate": 55,
+      "speakerId": 2,
+      "bookId": 2,
+      "meetingId": 3,
+      "id": 4
     }
   ],
   "meetings": [
     {
-      "id": 1,
-      "date": "2020-04-30T19:00:00.000Z",
+      "id": 2,
+      "date": "2024-01-31T19:00:00.000Z",
       "reports": []
     },
     {
-      "id": 2,
-      "date": "2020-02-01T14:00:00.000Z",
-      "reports": []
+      "date": "2024-12-07T19:00:00.000Z",
+      "reports": [],
+      "id": 3
     }
   ]
 }

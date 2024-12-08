@@ -1,33 +1,55 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { later } from '@ember/runloop';
+import { PER_PAGE } from '../controllers/meetings';
+import RSVP from 'rsvp';
 
 export default Route.extend({
   queryParams: {
-    speaker: {
+    speakerSelected: {
       refreshModel: true
     },
-    book: {
+    bookSelected: {
       refreshModel: true
     },
-    date: {
+    meetingDate: {
       refreshModel: true
     },
+    page: {
+      refreshModel: true
+    }
   },
   dataService: service('data-service'),
-  model({speaker, book, meetingDate}) {
+  async model({speakerSelected, bookSelected, meetingDate, page}) {
+    const query = {
+      _page: page,
+      _limit: PER_PAGE,
+    }
+    if (speakerSelected) {
+      query.speakerSelected = speakerSelected;
+    }
+    if (bookSelected) {
+      query.bookSelected = bookSelected;
+    }
+    if (meetingDate) {
+      query.meetingDate = meetingDate;
+    }
     let promise = new Promise((resolve, reject) => {
       later(async () => {
         try {
-          let meetings = await this.get('store').findAll('meeting');
-          resolve(meetings);
+          let model = RSVP.hash({
+            meetings: await this.store.query('meeting', query),
+            speakers: await this.store.findAll('speaker'),
+            books: await this.store.findAll('book')
+          });
+          resolve(model);
         }
         catch(e) {
           reject('Connection failed');
         }
       }, 1000);
-    }).then((meetings) => {
-      this.set('controller.model', meetings);
+    }).then((model) => {
+      this.set('controller.model', model);
     }).finally(() => {
       if (promise === this.get('modelPromise')) {
         this.set('controller.isLoading', false);
@@ -44,7 +66,7 @@ export default Route.extend({
 
   actions: {
     refreshMeetings() {
-      // this.refresh();
+      this.refresh();
     },
     loading() {
       return false;

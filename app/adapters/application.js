@@ -24,6 +24,17 @@ export default DS.JSONAPIAdapter.extend({
     if (modelName === 'meeting' && requestType === 'findRecord' && id) {
       url += '?_embed=reports';
     }
+    if (modelName === 'meeting' && requestType === 'query') {
+      url += '?_embed=reports';
+    }
     return url;
   },
+
+  handleResponse(status, headers, payload) {
+    const meta = {
+      total: headers['x-total-count'],
+    };
+    payload.meta = meta;
+    return this._super(...arguments);
+  }
 });

@@ -1,1 +1,75 @@
-{{outlet}}
+<div class="container h-100">
+  <div class="htop">
+    <h2 class="text-center">Редактирование доклада</h2>
+    <form class="edit-form">
+      <div class="form-group row">
+        <label for="inputMark" class="col-sm-2 col-form-label text-right">Оценка книги</label>
+        <div class="col-sm-10">
+          {{input type="number" min="1" max="5" class="form-control form-control-lg" id="inputMark" value=model.bookRate
+            placeholder="Введите оценку"}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPresentation" class="col-sm-2 col-form-label text-right big">URL презентации</label>
+        <div class="col-sm-10">
+          {{input type="url" class="form-control form-control-lg" id="inputPresentation"
+            placeholder="Введите URL презентации" value=model.presentationURL}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputVideo" class="col-sm-2 col-form-label text-right big">URL видео</label>
+        <div class="col-sm-10">
+          {{input type="url" class="form-control form-control-lg" id="inputVideo"
+            placeholder="Введите URL видео" value=model.videoURL}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputBook" class="col-sm-2 col-form-label text-right big">Книга</label>
+        <div class="col-sm-10">
+          <select class="selectpicker form-control form-control-lg"
+                  id="inputBook"
+                  data-live-search="true"
+                  data-size="5"
+                  title="Выберите книгу..."
+                  onchange={{action "updateBook" value="target.value"}}
+                  value={{model.book.id}}
+                  >
+            {{#each books as |book|}}
+              <option selected={{if (eq book.id model.book.id) "selected"}} value={{book.id}}>{{book.title}} ({{book.author}})</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputSpeaker" class="col-sm-2 col-form-label text-right big">Спикер</label>
+      <div class="col-sm-10">
+        <select class="selectpicker form-control form-control-lg"
+                id="inputSpeaker"
+                data-live-search="true"
+                data-size="5"
+                title="Выберите спикера..."
+                onchange={{action "updateSpeaker" value="target.value"}}
+                value={{model.speaker.id}}
+                >
+          {{#each speakers as |speaker|}}
+            <option selected={{if (eq speaker.id model.speaker.id) "selected"}} value={{speaker.id}}>{{speaker.lastName}} {{speaker.firstName}} {{speaker.patronymic}}</option>
+          {{/each}}
+        </select>
+      </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputReview" class="col-sm-2 col-form-label text-right big">Рецензия</label>
+        <div class="col-sm-10">
+          {{textarea id="inputReview" class="form-control form-control-lg" id="inputPatronymic"
+            placeholder="Введите рецензию" rows="4" value=model.feedback}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12 text-right">
+          <button type="submit" class="btn btn-primary btn-lg" {{action "saveReport" model}}>Сохранить</button>
+          <button type="submit" class="btn btn-outline-secondary btn-lg" {{action "cancel"}}>Отмена</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

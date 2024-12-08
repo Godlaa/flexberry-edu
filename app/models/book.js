@@ -8,5 +8,5 @@ export default DS.Model.extend({
   coverImage: DS.attr('string'),
   tags: DS.attr(),
   rating: DS.attr('number'),
-  report: DS.hasMany('report'),
+  reports: DS.hasMany('report'),
 });

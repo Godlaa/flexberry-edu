@@ -4,7 +4,7 @@ import DS from 'ember-data';
 export default ApplicationSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     reports: {
-      serialize: 'records',
+      serialize: 'ids',
       deserialize: 'records'
     }
   },

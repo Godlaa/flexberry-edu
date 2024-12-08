@@ -10,6 +10,7 @@ export default Controller.extend({
       bookModel.set('descriptionURL', book.descriptionURL);
       bookModel.set('coverImage', book.coverImage);
       bookModel.set('tags', book.tags);
+      bookModel.set('rating', book.rating);
       await bookModel.save();
       this.transitionToRoute('books');
     },
