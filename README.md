@@ -1,6 +1,14 @@
 # Для запуска DB команда
 node JsonServer.js db.json
 
+# Админ
+Логин: admin@gmail.com
+Пароль: 12345
+
+# Пользователь
+Логин: user@gmail.com
+Пароль: 12345
+
 # flexberry-edu
 
 This README outlines the details of collaborating on this Ember application.

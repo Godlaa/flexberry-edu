@@ -32,16 +32,25 @@
 			</li>
 		</ul>
 		<ul class="nav navbar-nav">
+      {{#if session.isAuthenticated}}
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: default;">Привет, {{session.data.authenticated.tokenData.email}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer;" onclick={{action 'logout'}}>Выход</a>
+        </li>
+      {{else}}
 			<li class="nav-item">
-				<a class="nav-link text-info" href="register.html">Регистрация</a>
+				{{#link-to 'register' class="nav-link"}}Регистрация{{/link-to}}
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="login.html">Войти</a>
+        {{#link-to 'login' class="nav-link"}}Вход{{/link-to}}
 			</li>
+      {{/if}}
 		</ul>
 	</div>
 </nav>
-{{outlet}}
+<div class="container h-100">{{outlet}}</div>
 <footer class="footer">
 	<div class="container">
 		<span>&copy; New Platform Ltd., 2022</span>

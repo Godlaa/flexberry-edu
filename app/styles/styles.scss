@@ -104,7 +104,7 @@ a.tag-link:hover {
 
 .btn-edit:focus,
 .btn-trash:focus,
-.btn-video:focus, 
+.btn-video:focus,
 .btn-present:focus {
   box-shadow: none;
 }
@@ -209,6 +209,10 @@ a.tag-link:hover {
   color: #6c757d;
 }
 
+.card-img-top {
+  height: 250px;
+  object-fit: fill;
+}
 /* Signin form styles
 -------------------------------------------------- */
 .form-signin-wrapper {
@@ -385,3 +389,8 @@ a.card .card-body {
     height: 10em;
   }
 }
+
+.error {
+  color: red;
+}
+

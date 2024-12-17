@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
 import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+  currentUser: service(),
   init() {
     this._super(...arguments);
     this.get('store').findAll('meeting').then((meetings) => {
@@ -33,6 +35,7 @@ export default Controller.extend({
       reportModel.set('videoURL', report.videoURL);
       reportModel.set('presentationURL', report.presentationURL);
       reportModel.set('bookRate', report.bookRate);
+      reportModel.set('user', this.get('currentUser.user'));
       reportModel.serialize();
       await reportModel.save();
       this.transitionToRoute('meetings-edit', this.get('model.meeting'));

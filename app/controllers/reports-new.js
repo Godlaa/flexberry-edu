@@ -1,12 +1,15 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
+  currentUser: service(),
   actions: {
     async saveReport(report) {
       let speaker = await this.store.findRecord('speaker', this.get('model.speaker'));
       let book = await this.store.findRecord('book', this.get('model.book'));
       let meeting = await this.get('model.meeting');
       let newReport = this.store.createRecord('report', {
+        user: this.get('currentUser.user'),
         feedback: report.feedback,
         videoURL: report.videoURL,
         presentationURL: report.presentationURL,

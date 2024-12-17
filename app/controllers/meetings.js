@@ -1,10 +1,11 @@
 import Controller from '@ember/controller';
 import moment from 'moment';
 import { computed } from '@ember/object';
-
+import { inject as service } from '@ember/service';
 export const PER_PAGE = 3;
 
 export default Controller.extend({
+  currentUser: service(),
   queryParams: ['speakerSelected', 'bookSelected', 'meetingDate', 'page'],
   speakerSelected: '',
   bookSelected: '',
@@ -40,7 +41,8 @@ export default Controller.extend({
     async addMeeting() {
       let newMeeting = this.store.createRecord('meeting', {
         date: moment().format('YYYY-MM-DD'),
-        reports: []
+        reports: [],
+        user: this.get('currentUser.user'),
       })
       newMeeting.serialize();
       await newMeeting.save().then(() => {
@@ -50,7 +52,7 @@ export default Controller.extend({
     },
     async deleteMeeting(meeting) {
       await meeting.destroyRecord();
-      this.transitionToRoute('meetings');
+      this.get('store').unloadRecord(meeting);
     },
     clearFilter(){
       this.set('speakerSelected', '');

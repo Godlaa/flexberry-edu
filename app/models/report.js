@@ -7,5 +7,7 @@ export default DS.Model.extend({
   videoURL: DS.attr('string'),
   presentationURL: DS.attr('string'),
   bookRate: DS.attr('number'),
-  meeting: DS.belongsTo('meeting')
+  meeting: DS.belongsTo('meeting'),
+
+  user: DS.belongsTo('user'),
 });

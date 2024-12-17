@@ -6,13 +6,14 @@
       "author": "Лев Толстой",
       "pagesCount": 1200,
       "descriptionURL": "https://example.com/war-and-peace-description",
-      "coverImage": "book-cover.jpg",
+      "coverImage": "uploads/1734279787994.jpg",
       "tags": [
         "классика",
         "роман",
         "исторический"
       ],
-      "rating": 89
+      "rating": 89,
+      "userId": 1
     },
     {
       "id": 2,
@@ -20,12 +21,26 @@
       "author": "Федор Достоевский",
       "pagesCount": 500,
       "descriptionURL": "https://example.com/crime-and-punishment-description",
-      "coverImage": "book-cover.jpg",
+      "coverImage": "uploads/1734279955013.webp",
       "tags": [
         "классика",
         "психологический роман"
       ],
-      "rating": 80
+      "rating": 80,
+      "userId": 1
+    },
+    {
+      "title": "Новая книга",
+      "author": "Толстой Л.Н",
+      "pagesCount": 123,
+      "descriptionURL": "123",
+      "coverImage": "uploads/1734447783073.png",
+      "tags": [
+        "классика"
+      ],
+      "rating": 100,
+      "userId": 1,
+      "id": 3
     }
   ],
   "speakers": [
@@ -34,14 +49,16 @@
       "firstName": "Иван",
       "lastName": "Иванов",
       "patronymic": "Иванович",
-      "imageURL": "speaker-image.jpg"
+      "imageURL": "speaker-image.jpg",
+      "userId": 1
     },
     {
+      "firstName": "Михаил",
+      "lastName": "Решетников",
+      "patronymic": "Андреевич",
+      "imageURL": "",
       "id": 2,
-      "firstName": "Мария",
-      "lastName": "Петрова",
-      "patronymic": "Александровна",
-      "imageURL": "speaker-image.jpg"
+      "userId": 1
     }
   ],
   "reports": [
@@ -66,13 +83,14 @@
       "id": 3
     },
     {
-      "feedback": "123123123",
+      "feedback": "123",
       "videoURL": "123",
       "presentationURL": "123",
-      "bookRate": 55,
+      "bookRate": 12312,
       "speakerId": 2,
-      "bookId": 2,
+      "bookId": 3,
       "meetingId": 3,
+      "userId": 1,
       "id": 4
     }
   ],
@@ -80,12 +98,36 @@
     {
       "id": 2,
       "date": "2024-01-31T19:00:00.000Z",
-      "reports": []
+      "reports": [],
+      "userId": 1
     },
     {
-      "date": "2024-12-07T19:00:00.000Z",
+      "date": "2024-12-16T19:00:00.000Z",
       "reports": [],
+      "userId": 1,
       "id": 3
+    },
+    {
+      "date": "2024-12-16T19:00:00.000Z",
+      "reports": [],
+      "userId": 1,
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "91ad86e38a85eafefe463e685da65a66d8d3750d7e711331d12ef68103a08903",
+      "passwordConfirmation": "91ad86e38a85eafefe463e685da65a66d8d3750d7e711331d12ef68103a08903",
+      "id": 1,
+      "role": "admin"
+    },
+    {
+      "email": "user@gmail.com",
+      "password": "91ad86e38a85eafefe463e685da65a66d8d3750d7e711331d12ef68103a08903",
+      "passwordConfirmation": "91ad86e38a85eafefe463e685da65a66d8d3750d7e711331d12ef68103a08903",
+      "id": 2,
+      "role": "user"
     }
   ]
 }

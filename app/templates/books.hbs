@@ -2,6 +2,7 @@
     <div class="htop">
         <h2 class="text-center">Книги</h2>
         <div class="form-row navbar-panel justify-content-between">
+            {{#if (can "edit book" model)}}
             <div class="col-md-auto">
                 {{#link-to 'books-new' type="button" class="btn btn-outline-primary my-2" title="Добавить книгу"}}
                     <svg viewBox="0 0 16 16" class="bi bi-plus card-button" fill="currentColor"
@@ -11,6 +12,7 @@
                     </svg>
                 {{/link-to}}
             </div>
+            {{/if}}
             <div class="col-md-auto">
                 <form class="form-inline">
                     {{input class="form-control mr-2 search-long" type="search" placeholder="Найти по полям"
@@ -28,7 +30,7 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-3 fix-margin">
-            {{#if model.isLoading}}
+            {{#if isLoading}}
             <div class="welcome-page">
                 <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="Загрузка">
             </div>
@@ -70,6 +72,7 @@
                                 <a href="{{book.descriptionURL}}" target="_blank"
                                     class="card-link line-offset">Описание</a>
                             </div>
+                            {{#if (can "edit meeting" model)}}
                             <div class="col text-right">
                                 {{#link-to 'books-edit' book.id type="button" class="btn btn-edit"}}
                                 <svg viewBox="0 0 16 16" class="bi bi-pencil card-button" fill="currentColor"
@@ -88,6 +91,7 @@
                                     </svg>
                                 </button>
                             </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>

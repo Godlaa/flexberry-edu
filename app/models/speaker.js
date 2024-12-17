@@ -6,4 +6,6 @@ export default DS.Model.extend({
   patronymic: DS.attr('string'),
   imageURL: DS.attr('string'),
   reports: DS.hasMany('report'),
+
+  user: DS.belongsTo('user'),
 });

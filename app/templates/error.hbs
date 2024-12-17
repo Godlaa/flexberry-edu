@@ -1,3 +1,6 @@
-<div class="welcome-page">
-    <img src="{{get-from-env 'imagesPath'}}error.jpg" alt="Error">
+<div class="d-flex flex-column justify-content-center align-items-center h-100">
+    {{#if model.error}}
+    <img src="{{get-from-env 'imagesPath'}}error.gif" alt="Error">
+    <h2>Error: {{model.error}}</h2>
+    {{/if}}
 </div>

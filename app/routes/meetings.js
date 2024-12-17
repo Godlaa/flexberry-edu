@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { later } from '@ember/runloop';
 import { PER_PAGE } from '../controllers/meetings';
 import RSVP from 'rsvp';
 
@@ -34,34 +33,12 @@ export default Route.extend({
     if (meetingDate) {
       query.meetingDate = meetingDate;
     }
-    let promise = new Promise((resolve, reject) => {
-      later(async () => {
-        try {
-          let model = RSVP.hash({
-            meetings: await this.store.query('meeting', query),
-            speakers: await this.store.findAll('speaker'),
-            books: await this.store.findAll('book')
-          });
-          resolve(model);
-        }
-        catch(e) {
-          reject('Connection failed');
-        }
-      }, 1000);
-    }).then((model) => {
-      this.set('controller.model', model);
-    }).finally(() => {
-      if (promise === this.get('modelPromise')) {
-        this.set('controller.isLoading', false);
-      }
-    });
-    this.set('modelPromise', promise);
-    return { isLoading: true };
-  },
 
-  setupController(controller, model) {
-    this._super(controller, model);
-    controller.set('isLoading', false);
+    return RSVP.hash({
+      meetings: this.get('store').query('meeting', query),
+      speakers: this.get('store').findAll('speaker'),
+      books: this.get('store').findAll('book'),
+    });
   },
 
   actions: {
