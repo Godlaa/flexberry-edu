@@ -42,7 +42,9 @@ export default Controller.extend({
           return;
         }
       }
+      let tags = book.tags.toString().split(',');
       book.set('user', this.get('currentUser.user'));
+      book.set('tags', tags);
       let newBook = this.get('store').createRecord('book', book);
       await newBook.save();
       this.transitionToRoute('books');

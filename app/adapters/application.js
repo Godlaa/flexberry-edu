@@ -40,7 +40,7 @@ export default DS.JSONAPIAdapter.extend({
 
   handleResponse(status, headers, payload) {
     const meta = {
-      total: payload.length,
+      total: headers['x-total-count'],
     };
     payload.meta = meta;
     return this._super(...arguments);

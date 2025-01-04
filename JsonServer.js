@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
 // eslint-disable-next-line no-undef
 const jsonServer = require('json-server')

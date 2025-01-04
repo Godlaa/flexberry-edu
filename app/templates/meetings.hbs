@@ -57,7 +57,7 @@
         <h5>Дата встречи</h5>
         <div class="form-group my-0">
           <div class="datepicker date input-group p-0 w-100">
-            {{input type="text" placeholder="Дата встречи" class="form-control" id="meetingDate" value=meetingDate}}
+            {{input type="date" placeholder="Дата встречи" class="form-control" id="meetingDate" value=meetingDate}}
             <div class="input-group-append">
               <span class="input-group-text px-4">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor"
@@ -93,7 +93,7 @@
       <div class="row h-100 justify-content-between mb-4">
         <div class="col-md-auto">
           <div class="datepicker datepicker-meeting date input-group p-0">
-            <input type="text" placeholder="Дата встречи" class="form-control meeting-date" value="{{meeting.date}}"
+            <input type="date" placeholder="Дата встречи" class="form-control meeting-date" value="{{meeting.date}}"
               disabled="disabled">
             <div class="input-group-append">
               <span class="input-group-text px-4">

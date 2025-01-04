@@ -73,45 +73,57 @@
       "bookRate": 95
     },
     {
-      "feedback": "123 Хорошая встреча! Хорошая встреча!",
+      "feedback": " Хорошая встреча! Хорошая встреча!",
       "videoURL": "123",
       "presentationURL": "123",
-      "bookRate": 123,
+      "bookRate": 100,
       "speakerId": 1,
       "bookId": 2,
       "meetingId": 2,
-      "id": 3
+      "id": 3,
+      "userId": 1
     },
     {
       "feedback": "123",
       "videoURL": "123",
       "presentationURL": "123",
-      "bookRate": 12312,
-      "speakerId": 2,
+      "bookRate": 84,
+      "speakerId": 1,
       "bookId": 3,
-      "meetingId": 3,
+      "meetingId": 4,
       "userId": 1,
       "id": 4
+    },
+    {
+      "feedback": "123",
+      "videoURL": "123",
+      "presentationURL": "123",
+      "bookRate": 84,
+      "speakerId": 1,
+      "bookId": 3,
+      "meetingId": 4,
+      "userId": 1,
+      "id": 5
     }
   ],
   "meetings": [
     {
       "id": 2,
-      "date": "2024-01-31T19:00:00.000Z",
+      "date": "2025-01-02T19:00:00.000Z",
       "reports": [],
       "userId": 1
     },
     {
-      "date": "2024-12-16T19:00:00.000Z",
-      "reports": [],
-      "userId": 1,
-      "id": 3
-    },
-    {
-      "date": "2024-12-16T19:00:00.000Z",
+      "date": "2025-01-01T19:00:00.000Z",
       "reports": [],
       "userId": 1,
       "id": 4
+    },
+    {
+      "date": "2025-01-02T19:00:00.000Z",
+      "reports": [],
+      "userId": 1,
+      "id": 5
     }
   ],
   "users": [
