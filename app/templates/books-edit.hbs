@@ -1,33 +1,57 @@
 <div class="container h-100">
   <div class="htop">
-    <h2 class="text-center">Редактирование книги: {{model.title}}</h2>
+    <h2 class="text-center">{{t "edit.titleBook"}}: {{model.title}}</h2>
     <form class="edit-form" {{action "saveBook" on="submit"}}>
       <div class="form-group row">
-        <label for="inputTitle" class="col-sm-2 col-form-label text-right">Название</label>
+        <label for="inputTitle" class="col-sm-2 col-form-label text-right">{{t "edit.fields.title"}}</label>
         <div class="col-sm-10">
-          {{input value=model.title class="form-control form-control-lg" id="inputTitle" placeholder="Полное название книги"}}
+          {{input value=model.title
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'title' 'isInvalid')) "is-invalid"))
+            id="inputTitle"
+            placeholder=(t "edit.fields.titlePlaceholder")}}
+          {{#if (and showValidations (v-get model 'title' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'title' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputAuthor" class="col-sm-2 col-form-label text-right">Автор</label>
+        <label for="inputAuthor" class="col-sm-2 col-form-label text-right">{{t "edit.fields.author"}}</label>
         <div class="col-sm-10">
-          {{input value=model.author class="form-control form-control-lg" id="inputAuthor" placeholder="Фамилия И.О. автора"}}
+          {{input value=model.author
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'author' 'isInvalid')) "is-invalid"))
+            id="inputAuthor"
+            placeholder=(t "edit.fields.authorPlaceholder")}}
+          {{#if (and showValidations (v-get model 'author' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'author' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputPagesCount" class="col-sm-2 col-form-label text-right">Объем</label>
+        <label for="inputPagesCount" class="col-sm-2 col-form-label text-right">{{t "edit.fields.pagesCount"}}</label>
         <div class="col-sm-10">
-          {{input value=model.pagesCount type="number" class="form-control form-control-lg" id="inputPagesCount" placeholder="Количество страниц книги"}}
+          {{input value=model.pagesCount
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'pagesCount' 'isInvalid')) "is-invalid"))
+            id="inputPagesCount"
+            placeholder=(t "edit.fields.pagesCountPlaceholder")}}
+          {{#if (and showValidations (v-get model 'pagesCount' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'pagesCount' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputDescriptionURL" class="col-sm-2 col-form-label text-right">Описание</label>
+        <label for="inputDescriptionURL" class="col-sm-2 col-form-label text-right">{{t "edit.fields.description"}}</label>
         <div class="col-sm-10">
-          {{input value=model.descriptionURL type="url" class="form-control form-control-lg" id="inputDescriptionURL" placeholder="Ссылка на сайт с описанием книги"}}
+          {{input value=model.descriptionURL
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'descriptionURL' 'isInvalid')) "is-invalid"))
+            id="inputDescriptionURL"
+            placeholder=(t "edit.fields.descriptionPlaceholder")}}
+          {{#if (and showValidations (v-get model 'descriptionURL' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'descriptionURL' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
-        <label for="customFile" class="col-sm-2 col-form-label text-right">Обложка</label>
+        <label for="customFile" class="col-sm-2 col-form-label text-right">{{t "edit.fields.cover"}}</label>
         <div class="input-group input-group-lg col-sm-10">
           <div class="custom-file">
             {{input
@@ -59,21 +83,33 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputRating" class="col-sm-2 col-form-label text-right">Рейтинг</label>
+        <label for="inputRating" class="col-sm-2 col-form-label text-right">{{t "edit.fields.rating"}}</label>
         <div class="col-sm-10">
-          {{input value=model.rating class="form-control" id="inputRating" placeholder="Рейтинг"}}
+          {{input value=model.rating
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'rating' 'isInvalid')) "is-invalid"))
+            id="inputRating"
+            placeholder=(t "edit.fields.ratingPlaceholder")}}
+          {{#if (and showValidations (v-get model 'rating' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'rating' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputTags" class="col-sm-2 col-form-label text-right">Теги</label>
+        <label for="inputTags" class="col-sm-2 col-form-label text-right">{{t "edit.fields.tags"}}</label>
         <div class="col-sm-10">
-          {{input value=model.tags class="form-control" id="inputTags" placeholder="#Теги через запятую"}}
+          {{input value=model.tags
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'tags' 'isInvalid')) "is-invalid"))
+            id="inputTags"
+            placeholder=(t "edit.fields.tagsPlaceholder")}}
+          {{#if (and showValidations (v-get model 'tags' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'tags' 'message'}}</div>
+          {{/if}}
         </div>
       </div>
       <div class="form-group row">
         <div class="col-12 text-right">
-          <button type="submit" class="btn btn-primary btn-lg" {{action "saveBook" model}}>Сохранить</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg" {{action "cancel"}}>Отмена</button>
+          <button type="submit" class="btn btn-primary btn-lg" {{action "saveBook" model}}>{{t "edit.buttons.save"}}</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg" {{action "cancel" model}}>{{t "edit.buttons.cancel"}}</button>
         </div>
       </div>
     </form>

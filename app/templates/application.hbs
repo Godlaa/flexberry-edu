@@ -30,6 +30,12 @@
 			<li class="nav-item">
 				<a class="nav-link text-primary" href="#">Запланировать</a>
 			</li>
+			<li class="nav-item align-self-center ml-3">
+				<select class="form-select" aria-label="Выбор языка" onchange={{action "changeLanguage" value="target.value"}}>
+          <option value="ru" selected>RU</option>
+          <option value="en">EN</option>
+        </select>
+			</li>
 		</ul>
 		<ul class="nav navbar-nav">
       {{#if session.isAuthenticated}}

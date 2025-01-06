@@ -7,6 +7,7 @@ export default Controller.extend({
   selectedFile: null,
   selectedFileName: 'Выберите файл',
   isFileClearButtonDisabled: true,
+  showValidations: false,
 
   actions: {
     handleFileUpload(event) {
@@ -27,36 +28,45 @@ export default Controller.extend({
       this.set('isFileClearButtonDisabled', true);
     },
     async saveBook(book) {
-      let bookModel = this.get('model');
-      if (this.selectedFile) {
-        const formData = new FormData();
-        formData.append('file', this.selectedFile);
+      this.set('showValidations', true);
+      if (book.validations.isValid) {
         try {
-          const uploadResponse = await fetch('http://localhost:3000/upload', {
-            method: 'POST',
-            body: formData
-          });
-          const uploadResult = await uploadResponse.json();
-
-          book.set('coverImage', uploadResult.filename);
-        } catch (error) {
-          // console.error('Ошибка загрузки файла:', error);
+          let bookModel = this.get('model');
+          if (this.selectedFile) {
+            const formData = new FormData();
+            formData.append('file', this.selectedFile);
+            try {
+              const uploadResponse = await fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData
+              });
+              const uploadResult = await uploadResponse.json();
+              book.set('coverImage', uploadResult.filename);
+            } catch (error) {
+              // console.error('Ошибка загрузки файла:', error);
+              return;
+            }
+          }
+          let tags = book.tags.toString().split(',');
+          bookModel.set('title', book.title);
+          bookModel.set('author', book.author);
+          bookModel.set('pagesCount', book.pagesCount);
+          bookModel.set('descriptionURL', book.descriptionURL);
+          bookModel.set('coverImage', book.coverImage);
+          bookModel.set('tags', tags);
+          bookModel.set('rating', book.rating);
+          bookModel.set('user', this.get('currentUser.user'));
+          await bookModel.save();
+          this.transitionToRoute('books');
+        }
+        catch (error) {
+          // console.error('Ошибка сохранения книги:', error);
           return;
         }
       }
-      let tags = book.tags.toString().split(',');
-      bookModel.set('title', book.title);
-      bookModel.set('author', book.author);
-      bookModel.set('pagesCount', book.pagesCount);
-      bookModel.set('descriptionURL', book.descriptionURL);
-      bookModel.set('coverImage', book.coverImage);
-      bookModel.set('tags', tags);
-      bookModel.set('rating', book.rating);
-      bookModel.set('user', this.get('currentUser.user'));
-      await bookModel.save();
-      this.transitionToRoute('books');
     },
-    cancel() {
+    cancel(book) {
+      book.rollbackAttributes();
       this.transitionToRoute('books');
     }
   }

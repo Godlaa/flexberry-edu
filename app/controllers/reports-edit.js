@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   currentUser: service(),
+  showValidations: false,
   init() {
     this._super(...arguments);
     this.get('store').findAll('meeting').then((meetings) => {
@@ -30,15 +31,18 @@ export default Controller.extend({
   },
   actions: {
     async saveReport(report) {
-      let reportModel = this.get('model');
-      reportModel.set('feedback', report.feedback);
-      reportModel.set('videoURL', report.videoURL);
-      reportModel.set('presentationURL', report.presentationURL);
-      reportModel.set('bookRate', report.bookRate);
-      reportModel.set('user', this.get('currentUser.user'));
-      reportModel.serialize();
-      await reportModel.save();
-      this.transitionToRoute('meetings-edit', this.get('model.meeting'));
+      this.set('showValidations', true);
+      if (report.validations.isValid) {
+        let reportModel = this.get('model');
+        reportModel.set('feedback', report.feedback);
+        reportModel.set('videoURL', report.videoURL);
+        reportModel.set('presentationURL', report.presentationURL);
+        reportModel.set('bookRate', report.bookRate);
+        reportModel.set('user', this.get('currentUser.user'));
+        reportModel.serialize();
+        await reportModel.save();
+        this.transitionToRoute('meetings-edit', this.get('model.meeting'));
+      }
     },
     updateSpeaker(selectedSpeakerId) {
       let selectedSpeaker = this.get('speakers').findBy('id', selectedSpeakerId);
@@ -48,7 +52,8 @@ export default Controller.extend({
       let selectedBook = this.get('books').findBy('id', selectedBookId);
       this.set('model.book', selectedBook);
     },
-    cancel() {
+    cancel(report) {
+      report.rollbackAttributes();
       this.transitionToRoute('meetings');
     }
   }

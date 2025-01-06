@@ -1,31 +1,49 @@
 <div class="container h-100">
-    <div class="htop">
-        <h2 class="text-center">Редактирование спикера: {{full-name model.firstName model.lastName model.patronymic}}</h2>
-        <form class="edit-form">
-            <div class="form-group row">
-                <label for="inputSurname" class="col-sm-2 col-form-label text-right">Фамилия</label>
-                <div class="col-sm-10">
-                    {{input value=model.lastName class="form-control form-control-lg" id="inputSurname" placeholder="Введите фамилию"}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label text-right">Имя</label>
-                <div class="col-sm-10">
-                    {{input value=model.firstName class="form-control form-control-lg" id="inputName" placeholder="Введите имя"}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPatronymic" class="col-sm-2 col-form-label text-right big">Отчество</label>
-                <div class="col-sm-10">
-                    {{input value=model.patronymic class="form-control form-control-lg" id="inputPatronymic" placeholder="Введите отчество"}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-12 text-right">
-                    <button type="submit" class="btn btn-primary btn-lg" {{action "saveSpeaker" model}}>Сохранить</button>
-                    <button type="submit" class="btn btn-outline-secondary btn-lg" {{action "cancel"}}>Отмена</button>
-                </div>
-            </div>
-        </form>
-    </div>
+  <div class="htop">
+    <h2 class="text-center">{{t "edit.titleSpeaker"}}: {{full-name model.firstName model.lastName model.patronymic}}</h2>
+    <form class="edit-form" {{action "saveSpeaker" on="submit"}}>
+      <div class="form-group row">
+        <label for="inputSurname" class="col-sm-2 col-form-label text-right">{{t "edit.fields.lastName"}}</label>
+        <div class="col-sm-10">
+          {{input value=model.lastName
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'lastName' 'isInvalid')) "is-invalid"))
+            id="inputSurname"
+            placeholder=(t "edit.fields.lastNamePlaceholder")}}
+          {{#if (and showValidations (v-get model 'lastName' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'lastName' 'message'}}</div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label text-right">{{t "edit.fields.firstName"}}</label>
+        <div class="col-sm-10">
+          {{input value=model.firstName
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'firstName' 'isInvalid')) "is-invalid"))
+            id="inputName"
+            placeholder=(t "edit.fields.firstNamePlaceholder")}}
+          {{#if (and showValidations (v-get model 'firstName' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'firstName' 'message'}}</div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPatronymic" class="col-sm-2 col-form-label text-right">{{t "edit.fields.patronymic"}}</label>
+        <div class="col-sm-10">
+          {{input value=model.patronymic
+            class=(concat "form-control form-control-lg " (if (and showValidations (v-get model 'patronymic' 'isInvalid')) "is-invalid"))
+            id="inputPatronymic"
+            placeholder=(t "edit.fields.patronymicPlaceholder")}}
+          {{#if (and showValidations (v-get model 'patronymic' 'isInvalid'))}}
+            <div class="invalid-feedback">{{v-get model 'patronymic' 'message'}}</div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12 text-right">
+          <button type="submit" class="btn btn-primary btn-lg" {{action "saveSpeaker" model}}>{{t "edit.buttons.save"}}</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg" {{action "cancel" model}}>{{t "edit.buttons.cancel"}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
