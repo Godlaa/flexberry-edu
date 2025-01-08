@@ -2,7 +2,7 @@
 	{{#link-to 'index' class="navbar-brand"}}
 		<img src="{{get-from-env 'imagesPath'}}logo-dark.png" width="30" height="30" class="d-inline-block align-top" alt=""
 			loading="lazy" />
-		Книжный клуб
+		{{t "app.title"}}
 	{{/link-to}}
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Открыть меню">
@@ -11,24 +11,24 @@
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<ul class="nav navbar-nav navigation-main">
 			<li class="nav-item active">
-				{{#link-to 'index' class="nav-link"}}Рабочий стол
-					<span class="sr-only">(текущий)</span>
+				{{#link-to 'index' class="nav-link"}}
+          {{t "app.home"}}
 				{{/link-to}}
 			</li>
 			<li class="nav-item">
-				{{#link-to 'meetings' class="nav-link"}}Встречи клуба{{/link-to}}
+				{{#link-to 'meetings' class="nav-link"}}{{t "app.meetings"}}{{/link-to}}
 			</li>
 			<li class="nav-item">
-				{{#link-to 'books' class="nav-link"}}Книги{{/link-to}}
+				{{#link-to 'books' class="nav-link"}}{{t "app.books"}}{{/link-to}}
 			</li>
 			<li class="nav-item">
-				{{#link-to 'speakers' class="nav-link"}}Спикеры{{/link-to}}
+				{{#link-to 'speakers' class="nav-link"}}{{t "app.speakers"}}{{/link-to}}
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-success" href="#">Оставить заявку</a>
+				<a class="nav-link text-success" href="#">{{t "app.becomeSpeaker"}}</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-primary" href="#">Запланировать</a>
+				<a class="nav-link text-primary" href="#">{{t "app.becomeOrganizer"}}</a>
 			</li>
 			<li class="nav-item align-self-center ml-3">
 				<select class="form-select" aria-label="Выбор языка" onchange={{action "changeLanguage" value="target.value"}}>
@@ -40,17 +40,17 @@
 		<ul class="nav navbar-nav">
       {{#if session.isAuthenticated}}
         <li class="nav-item">
-          <a class="nav-link" style="cursor: default;">Привет, {{session.data.authenticated.tokenData.email}}</a>
+          <a class="nav-link" style="cursor: default;">{{t "app.welcome"}}, {{session.data.authenticated.tokenData.email}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer;" onclick={{action 'logout'}}>Выход</a>
+          <a class="nav-link" style="cursor: pointer;" onclick={{action 'logout'}}>{{t "app.logout"}}</a>
         </li>
       {{else}}
 			<li class="nav-item">
-				{{#link-to 'register' class="nav-link"}}Регистрация{{/link-to}}
+				{{#link-to 'register' class="nav-link"}}{{t "app.register"}}{{/link-to}}
 			</li>
 			<li class="nav-item">
-        {{#link-to 'login' class="nav-link"}}Вход{{/link-to}}
+        {{#link-to 'login' class="nav-link"}}{{t "app.login"}}{{/link-to}}
 			</li>
       {{/if}}
 		</ul>

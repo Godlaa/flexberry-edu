@@ -1,15 +1,15 @@
 <div class="container h-100">
   <div class="htop">
-    <h2 class="text-center">Встречи клуба</h2>
+    <h2 class="text-center">{{t "meetings.title"}}</h2>
     {{#if model.isLoading}}
     <div class="welcome-page">
-      <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="Загрузка">
+      <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="{{t 'loading'}}">
     </div>
     {{else}}
     <div class="form-row navbar-panel justify-content-between align-items-end">
       <div class="col-md-1">
         {{#if (can "edit meeting" model)}}
-        <button type="button" class="btn btn-outline-primary my-2" title="Добавить встречу" {{action "addMeeting"}}>
+        <button type="button" class="btn btn-outline-primary my-2" title={{t "edit.buttons.addMeeting"}} {{action "addMeeting"}}>
           <svg viewBox="0 0 16 16" class="bi bi-plus card-button" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -19,9 +19,9 @@
         {{/if}}
       </div>
       <div class="col-md-3 align-top">
-        <h5>Спикер</h5>
+        <h5>{{t "edit.fields.speaker"}}</h5>
         <select class="selectpicker form-control dropdown-filter-control" data-live-search="true" data-size="5"
-          title="Спикер..."
+          title="{{t "edit.fields.speakerPlaceholder"}}"
           onchange={{action "updateSpeaker" value="target.value"}}
           value={{speakerSelected}}
           >
@@ -36,9 +36,9 @@
         </select>
       </div>
       <div class="col-md-3">
-        <h5>Книга</h5>
+        <h5>{{t "edit.fields.book"}}</h5>
         <select class="selectpicker form-control dropdown-filter-control" data-live-search="true" data-size="5"
-          title="Книга..."
+          title="{{t "edit.fields.bookPlaceholder"}}"
           onchange={{action "updateBook" value="target.value"}}
           value={{bookSelected}}
         >
@@ -54,10 +54,10 @@
         </select>
       </div>
       <div class="col-md-3">
-        <h5>Дата встречи</h5>
+        <h5>{{t "edit.fields.date"}}</h5>
         <div class="form-group my-0">
           <div class="datepicker date input-group p-0 w-100">
-            {{input type="date" placeholder="Дата встречи" class="form-control" id="meetingDate" value=meetingDate}}
+            {{input type="date" placeholder=(t "edit.fields.datePlaceholder") class="form-control" id="meetingDate" value=meetingDate}}
             <div class="input-group-append">
               <span class="input-group-text px-4">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor"
@@ -89,11 +89,11 @@
     </div>
     {{#each model.meetings as |meeting|}}
     <div class="border border-dark rounded p-4 mb-4">
-      <h4>Дата встречи</h4>
+      <h4>{{t "edit.fields.date"}}</h4>
       <div class="row h-100 justify-content-between mb-4">
         <div class="col-md-auto">
           <div class="datepicker datepicker-meeting date input-group p-0">
-            <input type="date" placeholder="Дата встречи" class="form-control meeting-date" value="{{meeting.date}}"
+            <input type="date" placeholder="{{t "edit.fields.datePlaceholder"}}" class="form-control meeting-date" value="{{meeting.date}}"
               disabled="disabled">
             <div class="input-group-append">
               <span class="input-group-text px-4">
@@ -128,23 +128,23 @@
           {{/if}}
         </div>
       </div>
-      <h4>Список докладов</h4>
+      <h4>{{t "edit.fields.reports"}}</h4>
       {{#each meeting.reports as |report|}}
       <ul class="list-group">
         <li class="list-group-item">
           <div class="row h-100 justify-content-between">
             <div class="col-md-2 text-center">
-              <h5 class="py-2">Спикер</h5>
+              <h5 class="py-2">{{t "edit.fields.speaker"}}</h5>
               <img src="images/speaker.jpg" class="rounded w-100" alt="Спикер">
               <p>{{full-name report.speaker.lastName report.speaker.firstName report.speaker.patronymic}}</p>
             </div>
             <div class="col-md-2 text-center">
-              <h5 class="py-2">Книга</h5>
+              <h5 class="py-2">{{t "edit.fields.book"}}</h5>
               <p>{{report.book.title}}</p>
               <p>{{report.book.author}}</p>
               <div class="row align-items-center m-0">
                 <div class="col-md-auto pl-0">
-                  Оценка:
+                  {{t "edit.fields.bookRate"}}:
                 </div>
                 <div class="col p-0">
                   <div class="progress">
@@ -155,14 +155,14 @@
               </div>
             </div>
             <div class="col-md-6">
-              <h5 class="text-center py-2">Отзыв</h5>
+              <h5 class="text-center py-2">{{t "edit.fields.feedback"}}</h5>
               <p>
                 {{report.feedback}}
               </p>
             </div>
             <div class="col-md-2 text-center col-filter">
-              <h5 class="py-2">Ссылки</h5>
-              <a target="_blank" href={{report.videoURL}} class="btn btn-video" title="Посмотреть запись доклада">
+              <h5 class="py-2">{{t "edit.fields.video"}}</h5>
+              <a target="_blank" href={{report.videoURL}} class="btn btn-video" title="{{t "edit.fields.videoURL"}}">
                 <svg viewBox="0 0 16 16" class="bi bi-camera-reels card-button" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"
@@ -171,7 +171,7 @@
                   <path fill-rule="evenodd" d="M9 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 </svg>
               </a>
-              <a target="_blank" href={{report.presentationURL}} class="btn btn-present" title="Скачать презентацию">
+              <a target="_blank" href={{report.presentationURL}} class="btn btn-present" title="{{t "edit.fields.presentationURL"}}">
                 <svg viewBox="0 0 16 16" class="bi bi-file-ppt card-button" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"

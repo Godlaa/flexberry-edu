@@ -1,4 +1,22 @@
 export default {
+  app: {
+    welcome: 'Добро пожаловать',
+    title: 'Книжный клуб',
+    home: 'Главная',
+    meetings: 'Встречи',
+    speakers: 'Спикеры',
+    books: 'Книги',
+    becomeSpeaker: 'Оставить заявку',
+    becomeOrganizer: 'Запланировать',
+    login: 'Вход',
+    register: 'Регистрация',
+    logout: 'Выход'
+  },
+  login: {
+    title: 'Вход',
+    submitButton: 'Войти',
+    backButton: 'Назад'
+  },
   edit: {
     errors: {
       titleAbsent: 'Название книги обязательно для заполнения',
@@ -14,6 +32,7 @@ export default {
     titleMeeting: 'Редактировать встречу',
     titleReport: 'Редактировать отчет',
     fields: {
+      browse: 'Обзор',
       title: 'Название',
       titlePlaceholder: 'Полное название книги',
       author: 'Автор',
@@ -58,15 +77,24 @@ export default {
       date: 'Дата',
       datePlaceholder: 'Введите дату',
       reports: 'Отчеты',
-      video: 'Видео'
+      video: 'Видео',
+      loading: 'Загрузка',
     },
     buttons: {
       save: 'Сохранить',
       cancel: 'Отмена',
       choose: 'Выбрать',
-      clear: 'X'
+      clear: 'X',
     }
   },
+  register: {
+    title: 'Регистрация',
+    emailPlaceholder: 'name@example.com',
+    passwordPlaceholder: 'Пароль',
+    submitButton: 'Зарегистрироваться',
+    backButton: 'Назад'
+  },
+  logoAlt: 'Логотип',
   validation: {
     required: '{description} обязательно для заполнения',
     between: '{description} должно быть от {min} до {max} символов',
@@ -76,5 +104,51 @@ export default {
     tags: 'Теги должны начинаться с # и разделяться запятыми',
     email: 'Пожалуйста, введите корректный email',
     passwordConfirmation: 'Пароли должны совпадать'
-  }
+  },
+  reportsNew: {
+    title: 'Добавление доклада',
+    bookRate: 'Оценка книги',
+    bookRatePlaceholder: 'Введите оценку',
+    presentationURL: 'URL презентации',
+    presentationURLPlaceholder: 'Введите URL презентации',
+    videoURL: 'URL видео',
+    videoURLPlaceholder: 'Введите URL видео',
+    book: 'Книга',
+    bookPlaceholder: 'Выберите книгу...',
+    speaker: 'Спикер',
+    speakerPlaceholder: 'Выберите спикера...',
+    feedback: 'Рецензия',
+    feedbackPlaceholder: 'Введите рецензию',
+    saveButton: 'Сохранить',
+    cancelButton: 'Отмена'
+  },
+  speakersNew: {
+    title: 'Создание спикера',
+    lastName: 'Фамилия',
+    lastNamePlaceholder: 'Введите фамилию',
+    firstName: 'Имя',
+    firstNamePlaceholder: 'Введите имя',
+    patronymic: 'Отчество',
+    patronymicPlaceholder: 'Введите отчество',
+    saveButton: 'Сохранить',
+    cancelButton: 'Отмена'
+  },
+  speakers: {
+    title: 'Спикеры',
+    addSpeaker: 'Добавить спикера',
+    searchPlaceholder: 'ФИО',
+    searchLabel: 'Спикер',
+    searchButton: 'Найти',
+    speakerPhoto: 'Фото спикера'
+  },
+  books: {
+    title: 'Книги',
+    tags: 'Теги',
+    books: 'Книги',
+    searchByBook: 'Поиск по книге',
+    searchByTags: 'Поиск по тегам',
+  },
+  meetings: {
+    title: 'Встречи',
+  },
 };

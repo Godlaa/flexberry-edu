@@ -65,7 +65,8 @@
             <label
               class="custom-file-label form-control-lg placeholder-color"
               for="customFile"
-              data-browse="Выбрать"
+              data-browse={{t "edit.fields.browse"}}
+              placeholder={{t "edit.fields.imageURL"}}
             >
               {{selectedFileName}}
             </label>
@@ -74,7 +75,6 @@
             <button
               class="btn btn-outline-secondary custom-file-clear"
               type="button"
-              disabled={{isFileClearButtonDisabled}}
               {{action "clearFile"}}
             >
               X

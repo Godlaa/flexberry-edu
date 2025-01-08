@@ -9,7 +9,6 @@ export default Controller.extend({
   actions: {
     async logout(e) {
       e.preventDefault();
-
       this.get('session').invalidate();
     },
     changeLanguage(language) {

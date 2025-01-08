@@ -1,10 +1,10 @@
 <div class="container h-100">
     <div class="htop">
-        <h2 class="text-center">Книги</h2>
+        <h2 class="text-center">{{t "books.title"}}</h2>
         <div class="form-row navbar-panel justify-content-between">
             {{#if (can "edit book" model)}}
             <div class="col-md-auto">
-                {{#link-to 'books-new' type="button" class="btn btn-outline-primary my-2" title="Добавить книгу"}}
+                {{#link-to 'books-new' type="button" class="btn btn-outline-primary my-2"}}
                     <svg viewBox="0 0 16 16" class="bi bi-plus card-button" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -15,17 +15,16 @@
             {{/if}}
             <div class="col-md-auto">
                 <form class="form-inline">
-                    {{input class="form-control mr-2 search-long" type="search" placeholder="Найти по полям"
-                    value=search
-                    aria-label="Найти по полям"}}
-                    <button class="btn btn-primary my-2" type="submit">Найти</button>
+                    {{input class="form-control mr-2 search-long" type="search" placeholder=(t "books.books")
+                    value=search}}
+                    <button class="btn btn-primary my-2" type="submit">{{t "books.searchByBook"}}</button>
                 </form>
             </div>
             <div class="col-md-auto">
                 <form class="form-inline">
-                    {{input class="form-control mr-2" type="tags" placeholder="Поиск по тегам" value=tags
+                    {{input class="form-control mr-2" type="tags" placeholder=(t "books.tags") value=tags
                         aria-label="Найти по тегам" }}
-                    <button class="btn btn-primary my-2" type="submit">Поиск</button>
+                    <button class="btn btn-primary my-2" type="submit">{{t "books.searchByTags"}}</button>
                 </form>
             </div>
         </div>
@@ -55,7 +54,7 @@
                         </li>
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col-md-auto">Рейтинг:</div>
+                                <div class="col-md-auto">{{t "edit.fields.rating"}}:</div>
                                 <div class="col">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: {{book.rating}}%;"
@@ -70,7 +69,7 @@
                         <div class="row">
                             <div class="col">
                                 <a href="{{book.descriptionURL}}" target="_blank"
-                                    class="card-link line-offset">Описание</a>
+                                    class="card-link line-offset">{{t "edit.fields.description"}}</a>
                             </div>
                             {{#if (can "edit meeting" model)}}
                             <div class="col text-right">

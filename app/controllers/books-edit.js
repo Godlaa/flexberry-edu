@@ -4,10 +4,14 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
 
   currentUser: service(),
+  i18n: service(),
   selectedFile: null,
-  selectedFileName: 'Выберите файл',
-  isFileClearButtonDisabled: true,
+  selectedFileName: null,
   showValidations: false,
+
+  init() {
+    this._super(...arguments);
+  },
 
   actions: {
     handleFileUpload(event) {
@@ -15,7 +19,6 @@ export default Controller.extend({
       if (file) {
         this.set('selectedFile', file);
         this.set('selectedFileName', file.name);
-        this.set('isFileClearButtonDisabled', false);
       }
     },
     clearFile() {
@@ -24,8 +27,7 @@ export default Controller.extend({
         fileInput.value = '';
       }
       this.set('selectedFile', null);
-      this.set('selectedFileName', 'Выберите файл');
-      this.set('isFileClearButtonDisabled', true);
+      this.set('selectedFileName', null);
     },
     async saveBook(book) {
       this.set('showValidations', true);

@@ -1,10 +1,10 @@
 <div class="container h-100">
     <div class="htop">
-        <h2 class="text-center">Спикеры</h2>
+        <h2 class="text-center">{{t 'speakers.title'}}</h2>
         <div class="form-row navbar-panel justify-content-between">
             {{#if (can "edit meeting" model)}}
             <div class="col-md-auto">
-                {{#link-to 'speakers-new' type="button" class="btn btn-outline-primary my-2" title="Добавить спикера"}}
+                {{#link-to 'speakers-new' type="button" class="btn btn-outline-primary my-2" title=(t 'speakers.addSpeaker')}}
                     <svg viewBox="0 0 16 16" class="bi bi-plus card-button" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -15,22 +15,21 @@
             {{/if}}
             <div class="col-md-auto">
                 <form class="form-inline">
-                    {{input class="form-control mr-2 search-long search-only" type="search" placeholder="ФИО"
-                        aria-label="Спикер" value=search}}
-                    <button class="btn btn-primary my-2" type="submit">Найти</button>
+                    {{input class="form-control mr-2 search-long search-only" type="search" placeholder=(t 'speakers.searchPlaceholder') value=search}}
+                    <button class="btn btn-primary my-2" type="submit">{{t 'speakers.searchButton'}}</button>
                 </form>
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-3">
             {{#if model.isLoading}}
             <div class="welcome-page">
-                <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="Загрузка">
+                <img src="{{get-from-env 'imagesPath'}}loading.gif" alt="{{t 'loading'}}">
             </div>
             {{else}}
             {{#each model as |speaker|}}
             <div class="col mb-4">
                 <div class="card">
-                    <img src="images/speaker.jpg" class="card-img-top" alt="Фото спикера">
+                    <img src="images/speaker.jpg" class="card-img-top" alt="{{t 'speakers.speakerPhoto'}}">
                     <div class="card-body">
                         <h5 class="card-title">{{full-name speaker.firstName speaker.lastName speaker.patronymic}}</h5>
                     </div>

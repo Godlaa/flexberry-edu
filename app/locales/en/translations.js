@@ -1,4 +1,22 @@
 export default {
+  app: {
+    welcome: 'Welcome',
+    title: 'Reading Club',
+    home: 'Home',
+    meetings: 'Meetings',
+    speakers: 'Speakers',
+    books: 'Books',
+    becomeSpeaker: 'Make a order',
+    becomeOrganizer: 'Make a reservation',
+    login: 'Login',
+    register: 'Register',
+    logout: 'Logout'
+  },
+  login: {
+    title: 'Login',
+    submitButton: 'Login',
+    backButton: 'Back'
+  },
   errors: {
     titleAbsent: 'Title is required',
     authorAbsent: 'Author is required',
@@ -14,6 +32,7 @@ export default {
     titleMeeting: 'Edit Meeting',
     titleReport: 'Edit Report',
     fields: {
+      browse: 'Browse',
       title: 'Title',
       titlePlaceholder: 'Full book title',
       author: 'Author',
@@ -58,15 +77,60 @@ export default {
       date: 'Date',
       datePlaceholder: 'Enter date',
       reports: 'Reports',
-      video: 'Video'
+      video: 'Video',
+      loading: 'Loading',
     },
     buttons: {
       save: 'Save',
       cancel: 'Cancel',
       choose: 'Choose',
-      clear: 'Clear'
+      clear: 'Clear',
     }
   },
+  reportsNew: {
+    title: 'Add Report',
+    bookRate: 'Book Rating',
+    bookRatePlaceholder: 'Enter rating',
+    presentationURL: 'Presentation URL',
+    presentationURLPlaceholder: 'Enter presentation URL',
+    videoURL: 'Video URL',
+    videoURLPlaceholder: 'Enter video URL',
+    book: 'Book',
+    bookPlaceholder: 'Select a book...',
+    speaker: 'Speaker',
+    speakerPlaceholder: 'Select a speaker...',
+    feedback: 'Feedback',
+    feedbackPlaceholder: 'Enter feedback',
+    saveButton: 'Save',
+    cancelButton: 'Cancel'
+  },
+  speakersNew: {
+    title: 'Create Speaker',
+    lastName: 'Last Name',
+    lastNamePlaceholder: 'Enter last name',
+    firstName: 'First Name',
+    firstNamePlaceholder: 'Enter first name',
+    patronymic: 'Patronymic',
+    patronymicPlaceholder: 'Enter patronymic',
+    saveButton: 'Save',
+    cancelButton: 'Cancel'
+  },
+  speakers: {
+    title: 'Speakers',
+    addSpeaker: 'Add Speaker',
+    searchPlaceholder: 'Full Name',
+    searchLabel: 'Speaker',
+    searchButton: 'Search',
+    speakerPhoto: 'Speaker Photo'
+  },
+  register: {
+    title: 'Register',
+    emailPlaceholder: 'name@example.com',
+    passwordPlaceholder: 'Password',
+    submitButton: 'Register',
+    backButton: 'Back'
+  },
+  logoAlt: 'Logo',
   validation: {
     required: '{description} is required',
     between: '{description} must be between {min} and {max} characters',
@@ -76,5 +140,15 @@ export default {
     tags: 'Tags must start with # and be separated by commas',
     email: 'Please enter a valid email',
     passwordConfirmation: 'Passwords must match'
-  }
+  },
+  books: {
+    title: 'Books',
+    books: 'Books',
+    tags: 'Tags',
+    searchByBook: 'Search by book',
+    searchByTags: 'Search by tags',
+  },
+  meetings: {
+    title: 'Meetings',
+  },
 };
