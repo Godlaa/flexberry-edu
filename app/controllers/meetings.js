@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 export const PER_PAGE = 3;
 
 export default Controller.extend({
+  errorLogger: service(),
   currentUser: service(),
   queryParams: ['speakerSelected', 'bookSelected', 'meetingDate', 'page'],
   speakerSelected: '',
@@ -12,12 +13,12 @@ export default Controller.extend({
   meetingDate: '',
   page: 1,
   pages: computed('model.meetings.meta.total', function() {
-    const total = this.get('model.meetings.meta.total');
+    const total = parseInt(this.get('model.meetings.meta.total'));
     if(Number.isNaN(total) || total <= 0) {
       return [];
     }
 
-    let res = new Array(Math.ceil(total / PER_PAGE))
+    let res = new Array(Math.ceil((total) / PER_PAGE))
       .fill()
       .map((_, index) => index + 1);
 
@@ -39,20 +40,29 @@ export default Controller.extend({
       this.set('bookSelected', selectedBookId);
     },
     async addMeeting() {
-      let newMeeting = this.store.createRecord('meeting', {
-        date: moment().format('YYYY-MM-DD'),
-        reports: [],
-        user: this.get('currentUser.user'),
-      })
-      newMeeting.serialize();
-      await newMeeting.save().then(() => {
-        newMeeting.set('id', newMeeting.id);
-        this.transitionToRoute('meetings-edit', newMeeting);
-      })
+      try {
+        let newMeeting = this.store.createRecord('meeting', {
+          date: moment().format('YYYY-MM-DD'),
+          reports: [],
+          user: this.get('currentUser.user'),
+        })
+        newMeeting.serialize();
+        await newMeeting.save().then(() => {
+          newMeeting.set('id', newMeeting.id);
+          this.transitionToRoute('meetings-edit', newMeeting);
+        })}
+      catch (error) {
+        this.errorLogger.logError(error);
+      }
     },
     async deleteMeeting(meeting) {
-      await meeting.destroyRecord();
-      this.get('store').unloadRecord(meeting);
+      try {
+        await meeting.destroyRecord();
+        this.get('store').unloadRecord(meeting);
+      }
+      catch (error) {
+        this.errorLogger.logError(error);
+      }
     },
     clearFilter(){
       this.set('speakerSelected', '');

@@ -8,6 +8,11 @@ export default Route.extend({
     },
   },
   dataService: service('data-service'),
+  errorLogger: service(),
+  afterModel() {
+    this._super(...arguments);
+    this.errorLogger.logError('Speakers route rendered');
+  },
   model({search}) {
     if (search) {
       return this.get('store').query('speaker', { q: search });

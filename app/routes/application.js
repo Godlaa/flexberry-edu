@@ -7,10 +7,15 @@ export default Route.extend(ApplicationRouteMixin, {
 
   session: service(),
   currentUser: service(),
+  errorLogger: service(),
 
   beforeModel() {
     this._super(...arguments);
-    this.loadUser();
+    try {
+      this.loadUser();
+    } catch (error) {
+      this.errorLogger.logError(error);
+    }
   },
 
   sessionAuthenticated() {
@@ -35,6 +40,7 @@ export default Route.extend(ApplicationRouteMixin, {
       if (transition) {
         transition.abort();
       }
+      this.errorLogger.logError(error);
       this.intermediateTransitionTo('error', { error: error.message });
     }
   }

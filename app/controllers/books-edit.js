@@ -2,9 +2,9 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-
   currentUser: service(),
   i18n: service(),
+  errorLogger: service(),
   selectedFile: null,
   selectedFileName: null,
   showValidations: false,
@@ -15,19 +15,27 @@ export default Controller.extend({
 
   actions: {
     handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.set('selectedFile', file);
-        this.set('selectedFileName', file.name);
+      try {
+        const file = event.target.files[0];
+        if (file) {
+          this.set('selectedFile', file);
+          this.set('selectedFileName', file.name);
+        }
+      } catch (error) {
+        this.errorLogger.logError(error);
       }
     },
     clearFile() {
-      const fileInput = document.getElementById('customFile');
-      if (fileInput) {
-        fileInput.value = '';
+      try {
+        const fileInput = document.getElementById('customFile');
+        if (fileInput) {
+          fileInput.value = '';
+        }
+        this.set('selectedFile', null);
+        this.set('selectedFileName', null);
+      } catch (error) {
+        this.errorLogger.logError(error);
       }
-      this.set('selectedFile', null);
-      this.set('selectedFileName', null);
     },
     async saveBook(book) {
       this.set('showValidations', true);
@@ -45,7 +53,7 @@ export default Controller.extend({
               const uploadResult = await uploadResponse.json();
               book.set('coverImage', uploadResult.filename);
             } catch (error) {
-              // console.error('Ошибка загрузки файла:', error);
+              this.errorLogger.logError(error);
               return;
             }
           }
@@ -60,16 +68,18 @@ export default Controller.extend({
           bookModel.set('user', this.get('currentUser.user'));
           await bookModel.save();
           this.transitionToRoute('books');
-        }
-        catch (error) {
-          // console.error('Ошибка сохранения книги:', error);
-          return;
+        } catch (error) {
+          this.errorLogger.logError(error);
         }
       }
     },
     cancel(book) {
-      book.rollbackAttributes();
-      this.transitionToRoute('books');
+      try {
+        book.rollbackAttributes();
+        this.transitionToRoute('books');
+      } catch (error) {
+        this.errorLogger.logError(error);
+      }
     }
   }
-})
+});

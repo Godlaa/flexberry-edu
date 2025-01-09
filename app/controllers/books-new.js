@@ -3,27 +3,36 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   currentUser: service(),
+  errorLogger: service(),
   selectedFile: null,
   selectedFileName: 'Выберите файл',
   isFileClearButtonDisabled: true,
 
   actions: {
     handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.set('selectedFile', file);
-        this.set('selectedFileName', file.name);
-        this.set('isFileClearButtonDisabled', false);
+      try {
+        const file = event.target.files[0];
+        if (file) {
+          this.set('selectedFile', file);
+          this.set('selectedFileName', file.name);
+          this.set('isFileClearButtonDisabled', false);
+        }
+      } catch (error) {
+        this.errorLogger.logError(error);
       }
     },
     clearFile() {
-      const fileInput = document.getElementById('customFile');
-      if (fileInput) {
-        fileInput.value = '';
+      try {
+        const fileInput = document.getElementById('customFile');
+        if (fileInput) {
+          fileInput.value = '';
+        }
+        this.set('selectedFile', null);
+        this.set('selectedFileName', 'Выберите файл');
+        this.set('isFileClearButtonDisabled', true);
+      } catch (error) {
+        this.errorLogger.logError(error);
       }
-      this.set('selectedFile', null);
-      this.set('selectedFileName', 'Выберите файл');
-      this.set('isFileClearButtonDisabled', true);
     },
     async saveBook(book) {
       if (this.selectedFile) {
@@ -35,22 +44,29 @@ export default Controller.extend({
             body: formData
           });
           const uploadResult = await uploadResponse.json();
-
           book.set('coverImage', uploadResult.filename);
         } catch (error) {
-          // console.error('Ошибка загрузки файла:', error);
+          this.errorLogger.logError(error);
           return;
         }
       }
-      let tags = book.tags.toString().split(',');
-      book.set('user', this.get('currentUser.user'));
-      book.set('tags', tags);
-      let newBook = this.get('store').createRecord('book', book);
-      await newBook.save();
-      this.transitionToRoute('books');
+      try {
+        let tags = book.tags.toString().split(',');
+        book.set('user', this.get('currentUser.user'));
+        book.set('tags', tags);
+        let newBook = this.get('store').createRecord('book', book);
+        await newBook.save();
+        this.transitionToRoute('books');
+      } catch (error) {
+        this.errorLogger.logError(error);
+      }
     },
     cancel() {
-      this.transitionToRoute('books');
+      try {
+        this.transitionToRoute('books');
+      } catch (error) {
+        this.errorLogger.logError(error);
+      }
     }
   }
 });

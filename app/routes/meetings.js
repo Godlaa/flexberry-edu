@@ -4,6 +4,7 @@ import { PER_PAGE } from '../controllers/meetings';
 import RSVP from 'rsvp';
 
 export default Route.extend({
+  errorLogger: service(),
   queryParams: {
     speakerSelected: {
       refreshModel: true
@@ -19,6 +20,10 @@ export default Route.extend({
     }
   },
   dataService: service('data-service'),
+  afterModel() {
+    this._super(...arguments);
+    this.errorLogger.logError('Meetings route rendered');
+  },
   async model({speakerSelected, bookSelected, meetingDate, page}) {
     const query = {
       _page: page,

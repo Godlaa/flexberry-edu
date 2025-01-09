@@ -16,8 +16,7 @@
             <div class="col-md-auto">
                 <form class="form-inline">
                     {{input class="form-control mr-2 search-long" type="search" placeholder=(t "books.books")
-                    value=search}}
-                    <button class="btn btn-primary my-2" type="submit">{{t "books.searchByBook"}}</button>
+                    value=actualSearch input=(action "searchAuthors")}}
                 </form>
             </div>
             <div class="col-md-auto">

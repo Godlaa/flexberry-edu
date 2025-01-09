@@ -6,17 +6,30 @@ export default Controller.extend({
   i18n: service(),
   session: service(),
   currentUser: service(),
+  errorLogger: service(),
   actions: {
     async logout(e) {
       e.preventDefault();
-      this.get('session').invalidate();
+      try {
+        await this.get('session').invalidate();
+      } catch (error) {
+        this.errorLogger.logError(error);
+      }
     },
     changeLanguage(language) {
-      set(this, 'i18n.locale', language);
+      try {
+        set(this, 'i18n.locale', language);
+      } catch (error) {
+        this.errorLogger.logError(error);
+      }
     }
   },
   init() {
     this._super(...arguments);
-    set(this, 'i18n.locale', 'ru');
+    try {
+      set(this, 'i18n.locale', 'ru');
+    } catch (error) {
+      this.errorLogger.logError(error);
+    }
   }
 });

@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
   session: service(),
   rememberMe: false,
+  errorLogger: service(),
 
   actions: {
     async login(user) {
@@ -15,6 +16,7 @@ export default Controller.extend({
         this.transitionToRoute('index');
       }
       catch(e) {
+        this.errorLogger.logError(e);
         this.send('error', e);
       }
     },
